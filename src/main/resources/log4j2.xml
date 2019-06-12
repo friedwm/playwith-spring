@@ -4,30 +4,16 @@
     <Property name="project_name">playwith-spring</Property>
   </Properties>
   <appenders>
-    <RollingFile name="RollingFile" fileName="${LOG_HOME:-/data/logs}/${project_name}/app.log"
-      filePattern="${LOG_HOME:-/data/logs}/${project_name}/app.%d{yyyy-MM-dd}.log">
-      <PatternLayout>
-        <Pattern>[%d][%t][%level][%l] - [TxId : %X{PtxId} , SpanId : %X{PspanId}] - %msg%n</Pattern>
-      </PatternLayout>
-      <Policies>
-        <TimeBasedTriggeringPolicy modulate="true"
-          interval="1" />
-      </Policies>
-    </RollingFile>
-
-    <Appenders>
-      <Console name="Console" target="SYSTEM_OUT">
-        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-      </Console>
-    </Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
   </appenders>
+
   <loggers>
-    <logger name="com.alibaba.dubbo" level="info" additivity="false">
-      <appender-ref ref="RollingFile" />
+    <logger name="com.alibaba.dubbo" level="info">
     </logger>
     <root level="info">
-      <appender-ref ref="RollingFile" />
-      <appender-ref ref="SYSTEM_OUT" />
+      <appender-ref ref="Console"/>
     </root>
   </loggers>
 </configuration>
