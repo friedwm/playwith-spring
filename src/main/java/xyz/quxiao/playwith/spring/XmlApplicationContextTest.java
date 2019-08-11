@@ -1,11 +1,10 @@
 package xyz.quxiao.playwith.spring;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.util.Scanner;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import xyz.quxiao.playwith.spring.bean.Fruit;
+import xyz.quxiao.playwith.spring.service.FruitService;
 
 /**
  * @author 作者 :quxiao 创建时间：2019/6/11 20:06
@@ -14,12 +13,13 @@ import org.springframework.core.io.Resource;
 public class XmlApplicationContextTest {
 
   public static void main(String[] args) throws IOException {
-    Resource classPathResource = new DefaultResourceLoader()
-        .getResource("classpath*:META-INF/MANIFEST.MF");
-    Scanner scanner = new Scanner(new BufferedInputStream(classPathResource.getInputStream()));
-    while (scanner.hasNextLine()) {
-      log.info("{}", scanner.nextLine());
-    }
+    ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(
+        "ApplicationContext.xml");
 
+    Fruit fruit = ac.getBean("fruit", Fruit.class);
+    FruitService fruitService = ac.getBean(FruitService.class);
+    fruitService.printFruitName(fruit);
   }
+
+
 }

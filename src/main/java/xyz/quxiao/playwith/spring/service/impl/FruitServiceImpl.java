@@ -15,8 +15,7 @@ public class FruitServiceImpl implements FruitService {
   private static final Logger logger = LoggerFactory.getLogger(FruitServiceImpl.class);
 
   @Override
-  public String printFruitName(Fruit fruit) {
-
-    return null;
+  public void printFruitName(Fruit fruit) {
+    System.out.println(fruit.getName());
   }
 }

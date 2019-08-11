@@ -7,5 +7,5 @@ import xyz.quxiao.playwith.spring.bean.Fruit;
  */
 public interface FruitService {
 
-  String printFruitName(Fruit fruit);
+  void printFruitName(Fruit fruit);
 }
