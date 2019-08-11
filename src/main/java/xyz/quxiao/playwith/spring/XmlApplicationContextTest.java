@@ -19,6 +19,8 @@ public class XmlApplicationContextTest {
     Fruit fruit = ac.getBean("fruit", Fruit.class);
     FruitService fruitService = ac.getBean(FruitService.class);
     fruitService.printFruitName(fruit);
+    log.info("hello");
+    ac.close();
   }
 
 
