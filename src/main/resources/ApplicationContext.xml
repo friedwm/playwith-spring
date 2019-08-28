@@ -2,32 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:task="http://www.springframework.org/schema/task"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd"
   default-lazy-init="true">
-
-  <bean id="diceStatPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-    <property name="pattern" value=".*dice"  />
-  </bean>
-  <bean id="diceStatAdvice" class="xyz.quxiao.playwith.spring.proxy.DiceStatAdvice"></bean>
-  <bean id="diceStatAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-    <constructor-arg index="0" ref="diceStatPointcut" />
-    <constructor-arg index="1" ref="diceStatAdvice" />
-  </bean>
-
-  <bean id="test" class="org.springframework.aop.framework.ProxyFactoryBean">
-    <property name="proxyInterfaces">
-      <value>xyz.quxiao.playwith.spring.proxy.Dice</value>
-    </property>
-    <property name="target">
-      <bean class="xyz.quxiao.playwith.spring.proxy.RandomDice"></bean>
-    </property>
-    <property name="interceptorNames">
-      <value>diceStatAdvisor</value>
-    </property>
-  </bean>
 
   <task:annotation-driven scheduler="taskScheduler"/>
   <task:scheduler id="taskScheduler" pool-size="4"/>
-
-
+  <bean id="businessService" class="xyz.quxiao.playwith.spring.aop.BusinessService"/>
+  <bean id="businessAspect" class="xyz.quxiao.playwith.spring.aop.BusinessAspect"/>
+  <aop:config>
+    <aop:pointcut id="pointcut" expression="execution(* doBusiness())"/>
+    <aop:aspect ref="businessAspect">
+      <aop:before method="doBefore" pointcut-ref="pointcut" />
+      <aop:after method="doAfter" pointcut-ref="pointcut" />
+    </aop:aspect>
+  </aop:config>
 </beans>

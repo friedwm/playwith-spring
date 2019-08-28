@@ -12,7 +12,7 @@
   <loggers>
     <logger name="com.alibaba.dubbo" level="info">
     </logger>
-    <root level="debug">
+    <root level="trace">
       <appender-ref ref="Console"/>
     </root>
   </loggers>

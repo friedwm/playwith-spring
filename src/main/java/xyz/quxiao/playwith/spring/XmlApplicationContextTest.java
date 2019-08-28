@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.stream.LongStream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import xyz.quxiao.playwith.spring.aop.BusinessService;
 import xyz.quxiao.playwith.spring.proxy.Dice;
 
 /**
@@ -15,10 +16,8 @@ public class XmlApplicationContextTest {
   public static void main(String[] args) throws IOException {
     ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext(
         "ApplicationContext.xml");
-    Dice test = (Dice) ac.getBean("test");
-    LongStream.range(1, Long.MAX_VALUE - 1000).forEachOrdered(i -> {
-      int dice = test.dice();
-    });
+    BusinessService service = ac.getBean(BusinessService.class);
+    service.doBusiness();
     ac.close();
   }
 
