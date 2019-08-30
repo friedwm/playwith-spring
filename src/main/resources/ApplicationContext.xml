@@ -13,7 +13,7 @@
   <aop:config>
     <aop:pointcut id="pointcut" expression="execution(* doBusiness())"/>
     <aop:aspect ref="businessAspect">
-      <aop:before method="doBefore" pointcut-ref="pointcut" />
+      <aop:before method="doBefore" pointcut-ref="pointcut" arg-names="" />
       <aop:after method="doAfter" pointcut-ref="pointcut" />
     </aop:aspect>
   </aop:config>
