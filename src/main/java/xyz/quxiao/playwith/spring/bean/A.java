@@ -1,5 +1,6 @@
 package xyz.quxiao.playwith.spring.bean;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -7,8 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author 作者 :quxiao 创建时间：2019/9/29 11:36
  */
-@Component(value = "compA")
-@DependsOn("compB")
+@Data
 public class A {
 
   @Autowired
