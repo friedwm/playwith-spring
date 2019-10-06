@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -22,6 +24,7 @@ public class Runner {
       return new A();
     }
 
+    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
     @Bean("compB")
     public B b() {
       return new B();
@@ -32,6 +35,9 @@ public class Runner {
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(
         Conf.class);
     A compA = ac.getBean("compA", A.class);
+    compA.test();
+    compA.test();
+    compA.test();
     compA.test();
 
   }

@@ -25,6 +25,8 @@ public class A {
   }
 
   public void test() {
-    System.out.println("test from A");
+    System.out.print("calling from A:");
+    b.test();
+
   }
 }
