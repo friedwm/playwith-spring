@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -11,9 +13,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Runner {
 
+  @Configuration
+  public static class Conf {
+
+    @Bean("compA")
+    @DependsOn("compB")
+    public A a() {
+      return new A();
+    }
+
+    @Bean("compB")
+    public B b() {
+      return new B();
+    }
+  }
 
   public static void main(String[] args) {
-    ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("classpath:BeanTestApplicationContext.xml");
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(
+        Conf.class);
     A compA = ac.getBean("compA", A.class);
     compA.test();
 
