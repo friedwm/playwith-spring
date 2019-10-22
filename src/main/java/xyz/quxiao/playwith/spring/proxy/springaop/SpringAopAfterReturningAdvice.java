@@ -1,4 +1,4 @@
-package xyz.quxiao.playwith.spring.proxy;
+package xyz.quxiao.playwith.spring.proxy.springaop;
 
 import com.alibaba.fastjson.JSON;
 import java.lang.reflect.Method;
@@ -12,10 +12,9 @@ import org.springframework.stereotype.Component;
 /**
  * @author 作者 :quxiao 创建时间：2019/8/25 10:35
  */
-@Component(value = "diceStatAdvice")
-public class DiceStatAdvice implements AfterReturningAdvice {
+public class SpringAopAfterReturningAdvice implements AfterReturningAdvice {
 
-  private static final Logger logger = LoggerFactory.getLogger(DiceStatAdvice.class);
+  private static final Logger logger = LoggerFactory.getLogger(SpringAopAfterReturningAdvice.class);
   private ConcurrentHashMap<Integer, Integer> countMap = new ConcurrentHashMap<>();
 
   @Scheduled(cron = "0/5 * * * * ?")
