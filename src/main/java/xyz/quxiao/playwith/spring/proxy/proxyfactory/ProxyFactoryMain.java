@@ -1,7 +1,10 @@
 package xyz.quxiao.playwith.spring.proxy.proxyfactory;
 
+import java.lang.reflect.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.AfterReturningAdvice;
+import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import org.springframework.aop.framework.ProxyFactory;
 import xyz.quxiao.playwith.spring.proxy.Dice;
 import xyz.quxiao.playwith.spring.proxy.RandomDice;
@@ -17,17 +20,16 @@ public class ProxyFactoryMain {
 
     ProxyFactory proxyFactory = new ProxyFactory(new RandomDice());
 
-    proxyFactory.addAdvice(new BeforeDiceAdvice());
-    proxyFactory.addAdvice(new AfterDicingAdvice());
-
+//    proxyFactory.addAdvice(new BeforeDiceAdvice());
+//    proxyFactory.addAdvice(new AfterDicingAdvice());
+    AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
+    advisor.setExpression("execution(* xyz.quxiao.playwith.spring.proxy.Dice+.dice())");
+    AfterReturningAdvice advice = (returnValue, method, args1, target) -> logger.info("afterReturning:{}", returnValue);
+    advisor.setAdvice(advice);
+    proxyFactory.addAdvisor(advisor);
     Dice proxy = (Dice) proxyFactory.getProxy();
-    Dice proxy2 = (Dice) proxyFactory.getProxy();
-    /*int dice = proxy.dice();
+    int dice = proxy.dice();
     logger.info("dice result:{}", dice);
-    logger.info("dice == dice2: {}", proxy == proxy2);*/
-
-    boolean equals = proxy.equals(proxy2);
-    logger.info("equals:{}", equals);
   }
 
 }
