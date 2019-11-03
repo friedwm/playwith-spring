@@ -1,4 +1,4 @@
-package xyz.quxiao.playwith.spring.proxy.proxyfactorybean;
+package xyz.quxiao.playwith.spring.proxy.autoproxy;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;

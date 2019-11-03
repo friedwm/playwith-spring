@@ -1,4 +1,4 @@
-package xyz.quxiao.playwith.spring.proxy.proxyfactorybean;
+package xyz.quxiao.playwith.spring.proxy.autoproxy;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
