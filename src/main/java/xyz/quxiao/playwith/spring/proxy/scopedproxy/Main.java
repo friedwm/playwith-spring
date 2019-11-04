@@ -20,9 +20,6 @@ public class Main {
     Gambler gambler = ac.getBean("gambler", Gambler.class);
     gambler.rollDice();
     gambler.rollDice();
-    gambler.rollDice();
-    gambler.rollDice();
-    gambler.rollDice();
   }
 
   @Configuration

@@ -22,13 +22,8 @@ public class RandomDice implements Dice {
 
   @Override
   public int dice() {
-    return 1 + random.nextInt(6);
+    int result = 1 + random.nextInt(6);
+    logger.info("dice, idx:{}, result:{}", idx, result);
+    return result;
   }
-
-  @Override
-  public int getIdx() {
-    return idx;
-  }
-
-
 }

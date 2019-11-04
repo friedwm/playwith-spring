@@ -1,4 +1,4 @@
-package xyz.quxiao.playwith.spring.annotations;
+package xyz.quxiao.playwith.spring.annotations.inherited;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

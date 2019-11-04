@@ -5,6 +5,4 @@ package xyz.quxiao.playwith.spring.proxy;
  */
 public interface Dice {
   int dice();
-
-  int getIdx();
 }
