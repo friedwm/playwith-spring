@@ -28,7 +28,9 @@ public class Main {
     @Scope(scopeName = "prototype", proxyMode = ScopedProxyMode.INTERFACES)
     @Bean
     public Dice dice() {
-      return new RandomDice();
+      RandomDice randomDice = new RandomDice();
+      randomDice.setGambler(gambler());
+      return randomDice;
     }
 
     @Bean

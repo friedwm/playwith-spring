@@ -15,9 +15,20 @@ public class RandomDice implements Dice {
   private int idx;
   private Random random = new Random(System.currentTimeMillis());
 
+  private Gambler gambler;
+
   public RandomDice() {
     logger.info("preInit, globalIdx:{}", globalIdx.get());
     idx = globalIdx.addAndGet(1);
+  }
+
+  public Gambler getGambler() {
+    return gambler;
+  }
+
+  public RandomDice setGambler(Gambler gambler) {
+    this.gambler = gambler;
+    return this;
   }
 
   @Override
