@@ -16,7 +16,7 @@ public class RandomDice implements Dice {
   private Random random = new Random(System.currentTimeMillis());
 
   public RandomDice() {
-    logger.info("初始化, globalIdx:{}", globalIdx.get());
+    logger.info("preInit, globalIdx:{}", globalIdx.get());
     idx = globalIdx.addAndGet(1);
   }
 
