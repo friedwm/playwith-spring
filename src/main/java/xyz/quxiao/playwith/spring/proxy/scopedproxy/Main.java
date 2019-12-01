@@ -19,13 +19,12 @@ public class Main {
         Conf.class);
     Gambler gambler = ac.getBean("gambler", Gambler.class);
     gambler.rollDice();
-    gambler.rollDice();
   }
 
   @Configuration
   public static class Conf {
 
-    @Scope(scopeName = "prototype", proxyMode = ScopedProxyMode.INTERFACES)
+    @Scope(scopeName = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
     @Bean
     public Dice dice() {
       RandomDice randomDice = new RandomDice();
